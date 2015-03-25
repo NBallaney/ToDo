@@ -14,15 +14,15 @@ var create = function(text) {
     complete: false,
     text: text
   };
-}
+};
 
 var update = function(id, updates) {
   _todos[id] = assign({}, _todos[id], updates);
-}
+};
 
 var destroy = function(id) {
   delete _todos[id];
-}
+};
 
 var store = assign({}, EventEmitter.prototype, {
   areAllComplete: function() {
@@ -33,15 +33,19 @@ var store = assign({}, EventEmitter.prototype, {
     }
     return true;
   },
+
   getAll: function() {
     return _todos;
   },
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
+
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
+
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
@@ -79,7 +83,7 @@ dispatcher.register(function(action) {
       }
 
     default
-
+      //No default
   }
 });
 

@@ -8,11 +8,13 @@ var actions = {
       text: text
     });
   },
+
   destroy: function(id) {
     dispatcher.dispatch({
       id: id
     });
   },
+
   updateText: function(id, text) {
     dispatcher.dispatch({
       actionType: constants.TODO_UPDATE_TEXT,
@@ -20,6 +22,7 @@ var actions = {
       text: text
     });
   },
+
   undoDestroy: function() {
     dispatcher.dispatch({
       actionType: constants.TODO_UNDO_DESTROY
@@ -27,4 +30,4 @@ var actions = {
   }
 };
 
-module.exports actions;
+module.exports = actions;

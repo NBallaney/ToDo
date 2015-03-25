@@ -15,6 +15,7 @@ var Header = react.createClass({
       </header>
     );
   },
+
   _onSave: function(text) {
     actions.create(text);
   }
