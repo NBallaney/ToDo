@@ -1,7 +1,7 @@
 var Header = require('./header.react');
 var todoList = require('./todoList.react');
 var React = require('react');
-var store = requie('../store');
+var store = require('../store');
 
 var getTodoState = function() {
   return {
@@ -34,5 +34,12 @@ var TodoApp = React.createClass({
       </div>
     );
   },
+
+  _onChange: function() {
+    this.setState(getTodoState());
+  }
 });
+
+module.exports = TodoApp;
+
 

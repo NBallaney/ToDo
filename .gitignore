@@ -2,3 +2,4 @@ node_modules
 js/bundle.js
 js/bundle.min.js
 js/.bundle.js
+.DS_Store

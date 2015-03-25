@@ -82,7 +82,7 @@ dispatcher.register(function(action) {
         store.emitChange();
       }
 
-    default
+    default:
       //No default
   }
 });
