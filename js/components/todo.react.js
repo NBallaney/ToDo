@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var actions = require('../actions');
-var textInput = require('./textInput.react');
+var TextInput = require('./textInput.react');
 
 var classSet = require('react/lib/cx');
 

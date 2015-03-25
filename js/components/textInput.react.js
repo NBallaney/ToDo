@@ -13,7 +13,7 @@ var TextInput = React.createClass({
 
   getInitialState: function() {
     return {
-      this.props.value || ''
+      value: this.props.value || ''
     };
   },
 
@@ -23,11 +23,11 @@ var TextInput = React.createClass({
         className={this.props.className}
         id={this.props.id}
         placeholder={this.props.placeholder}
-        value={this.props.value}
+        value={this.state.value}
         onBlur={this._save}
         onChange={this._onChange}
         onKeyDown={this._onKeyDown}
-        autofocus={true}
+        autoFocus={true}
       />
     );
   },

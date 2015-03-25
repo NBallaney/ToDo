@@ -1,5 +1,5 @@
 var Header = require('./header.react');
-var todoList = require('./todoList.react');
+var TodoList = require('./todoList.react');
 var React = require('react');
 var store = require('../store');
 
@@ -16,11 +16,11 @@ var TodoApp = React.createClass({
   },
 
   componentDidMount: function() {
-    TodoStore.addChangeListener(this._onChange);
+    store.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    TodoStore.removeChangeListener(this._onChange);
+    store.removeChangeListener(this._onChange);
   },
 
   render: function() {

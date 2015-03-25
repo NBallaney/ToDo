@@ -1,6 +1,6 @@
 var dispatcher = require('./dispatcher');
 var EventEmitter = require('events').EventEmitter;
-var TodoConstants = require('./constants');
+var constants = require('./constants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';

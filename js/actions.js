@@ -11,6 +11,7 @@ var actions = {
 
   destroy: function(id) {
     dispatcher.dispatch({
+      actionType: constants.TODO_DESTROY,
       id: id
     });
   },

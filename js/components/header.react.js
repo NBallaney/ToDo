@@ -1,6 +1,6 @@
 var React = require('react');
-var actions = ('../actions');
-var textInput = ('./textInput.react');
+var actions = require('../actions');
+var TextInput = require('./textInput.react');
 
 var Header = React.createClass({
   render: function() {
