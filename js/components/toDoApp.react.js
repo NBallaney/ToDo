@@ -6,7 +6,6 @@ var store = require('../store');
 var getTodoState = function() {
   return {
     allTodos: store.getAll(),
-    areAllComplete: store.areAllComplete()
   };
 };
 
@@ -29,7 +28,6 @@ var TodoApp = React.createClass({
         <Header />
         <TodoList
           allTodos={this.state.allTodos}
-          areAllComplete={this.state.areAllComplete}
         />
       </div>
     );

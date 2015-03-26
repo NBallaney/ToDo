@@ -5,8 +5,7 @@ var Todo = require('./todo.react');
 var TodoList = React.createClass({
 
   propTypes: {
-    allTodos: React.PropTypes.object.isRequired,
-    areAllComplete: React.PropTypes.bool.isRequired
+    allTodos: React.PropTypes.object.isRequired
   },
 
   render: function() {
