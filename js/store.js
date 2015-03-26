@@ -6,6 +6,7 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _todos = {};
+var destroyed;
 
 var create = function(text) {
   var id = Date.now();
@@ -21,6 +22,7 @@ var update = function(id, updates) {
 };
 
 var destroy = function(id) {
+  destroyed = _todos[id];
   delete _todos[id];
 };
 
@@ -53,7 +55,6 @@ var store = assign({}, EventEmitter.prototype, {
 
 dispatcher.register(function(action) {
   var text;
-  var destroyed;
 
   switch(action.actionType) {
     case constants.TODO_CREATE:
@@ -65,7 +66,6 @@ dispatcher.register(function(action) {
       break;
 
     case constants.TODO_DESTROY:
-      destroyed = action;
       destroy(action.id);
       store.emitChange();
       break;

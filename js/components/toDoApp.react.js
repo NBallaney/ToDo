@@ -2,6 +2,7 @@ var Header = require('./header.react');
 var TodoList = require('./todoList.react');
 var React = require('react');
 var store = require('../store');
+var actions = require('../actions');
 
 var getTodoState = function() {
   return {
@@ -26,6 +27,9 @@ var TodoApp = React.createClass({
     return (
       <div>
         <Header />
+        <button onClick={this._onClick}>
+          Undo
+        </button>
         <TodoList
           allTodos={this.state.allTodos}
         />
@@ -35,6 +39,10 @@ var TodoApp = React.createClass({
 
   _onChange: function() {
     this.setState(getTodoState());
+  },
+
+  _onClick: function() {
+    actions.undoDestroy();
   }
 });
 
