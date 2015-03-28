@@ -17,6 +17,29 @@ var create = function(text) {
   };
 };
 
+$.ajax({
+  url:'/',
+  type: 'POST',
+  data: 'IT WORKS',
+  success: function() {
+    console.log('Posted successfully');
+  }.bind(this),
+  error: function(xhr, status, err) {
+    console.error('/', status, err.toString());
+  }.bind(this)
+});
+
+$.ajax({
+  url: '/getTodos',
+  dataType: 'json',
+  success: function(data) {
+    console.log(data);
+  }.bind(this),
+  error: function(xhr, state, err) {
+    console.error('/', status, err.toString());
+  }.bind(this)
+});
+
 var update = function(id, updates) {
   _todos[id] = assign({}, _todos[id], updates);
 };
@@ -71,8 +94,10 @@ dispatcher.register(function(action) {
       break;
 
     case constants.TODO_UNDO_DESTROY:
-      update(destroyed.id, destroyed);
-      store.emitChange();
+      if(destroyed){
+        update(destroyed.id, destroyed);
+        store.emitChange();
+      }
       break;
 
     case constants.TODO_UPDATE_TEXT:
