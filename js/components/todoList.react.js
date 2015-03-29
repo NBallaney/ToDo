@@ -9,12 +9,12 @@ var TodoList = React.createClass({
   },
 
   render: function() {
-     if (Object.keys(this.props.allTodos).length < 1) {
-       return null;
-     }
-
      var allTodos = this.props.allTodos;
      var todos = [];
+
+     if (Object.keys(allTodos).length < 1) {
+       return null;
+     }
 
      for (var key in allTodos) {
        todos.push(<Todo key={key} todo={allTodos[key]} />);

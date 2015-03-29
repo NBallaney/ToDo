@@ -20,7 +20,6 @@ def returnIndexPage():
 @app.route('/getTodos')
 def get_todos():
   data = g.db.execute("SELECT text,id FROM todos").fetchall()
-  print data
   todos = []
   for i in data:
     todos.append({'text': i[0], 'id': i[1]})
@@ -28,12 +27,13 @@ def get_todos():
 
 @app.route('/', methods = ['POST'])
 def post_todo():
-    incomingDict = request.form.to_dict()
-    text = incomingDict['text']
-    id = int(incomingDict['id'])
+    jsonData = request.get_json()
+    text = jsonData['text']
+    id = jsonData['id']
     g.db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
     g.db.commit()
     return redirect('/getTodos')
+
 
 if __name__ == '__main__':
     app.debug = True

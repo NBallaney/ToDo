@@ -1,26 +1,34 @@
 var Header = require('./header.react');
 var TodoList = require('./todoList.react');
 var React = require('react');
-var store = require('../store');
+var storeLogic = require('../store');
 var actions = require('../actions');
 
 var getTodoState = function() {
   return {
-    allTodos: store.getAll(),
+    allTodos: storeLogic.store.getAll()
   };
 };
 
 var TodoApp = React.createClass({
   getInitialState: function() {
-    return getTodoState();
+    return {
+      allTodos: {}
+    };
   },
 
   componentDidMount: function() {
-    store.addChangeListener(this._onChange);
+    var self = this;
+    storeLogic.API.getAllTodos(function(data) {
+      self.setState({
+        allTodos: data
+      });
+    });
+    storeLogic.store.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    store.removeChangeListener(this._onChange);
+    storeLogic.store.removeChangeListener(this._onChange);
   },
 
   render: function() {

@@ -8,27 +8,37 @@ var CHANGE_EVENT = 'change';
 var _todos = {};
 var destroyed;
 
-$.ajax({
-  url: '/getTodos',
-  dataType: 'json',
-  success: function(data) {
-    data.forEach(function(todo) {
-      _todos[todo.id] = {
-        id: todo.id,
-        complete: false,
-        text: todo.text
-      };
+var API = exports.API = {
+  getAllTodos: function(callback) {
+    $.ajax({
+      url: '/getTodos',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data) {
+        var todos = {};
+        data.forEach(function(todo) {
+          todos[todo.id] = {
+            id: todo.id,
+            complete: false,
+            text: todo.text
+          };
+        });
+        return callback(todos);
+      }.bind(this),
+      error: function(xhr, state, err) {
+        console.error('/', status, err.toString());
+      }.bind(this)
     });
-  }.bind(this),
-  error: function(xhr, state, err) {
-    console.error('/', status, err.toString());
-  }.bind(this)
+  }
+}
+
+API.getAllTodos(function(todos) {
+  _todos = todos;
 });
 
 
 var create = function(text) {
   var id = Date.now();
-  
   _todos[id] = {
     id: id,
     complete: false,
@@ -38,8 +48,8 @@ var create = function(text) {
   $.ajax({
     url:'/',
     type: 'POST',
-    dataType: 'json',
-    data: {text: text, id: id},
+    contentType: 'application/json',
+    data: JSON.stringify({text: text, id: id}),
     success: function() {
       console.log('Posted successfully');
     }.bind(this),
@@ -59,7 +69,7 @@ var destroy = function(id) {
   delete _todos[id];
 };
 
-var store = assign({}, EventEmitter.prototype, {
+var store = exports.store = assign({}, EventEmitter.prototype, {
   areAllComplete: function() {
     for(var id in _todos) {
       if(!_todos[id].complete) {
@@ -121,5 +131,3 @@ dispatcher.register(function(action) {
       //No default
   }
 });
-
-module.exports = store;
