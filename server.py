@@ -27,13 +27,18 @@ def get_todos():
 
 @app.route('/', methods = ['POST'])
 def post_todo():
-    jsonData = request.get_json()
-    text = jsonData['text']
-    id = jsonData['id']
-    g.db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
-    g.db.commit()
-    return redirect('/getTodos')
+  jsonData = request.get_json()
+  text = jsonData['text']
+  id = jsonData['id']
+  g.db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
+  g.db.commit()
+  return 'Successful POST'
 
+@app.route('/<id>', methods = ['DELETE'])
+def delete_todo(id):
+  g.db.execute("DELETE FROM todos WHERE id=(?)", [id])
+  g.db.commit()
+  return 'Successful DELETE'
 
 if __name__ == '__main__':
     app.debug = True

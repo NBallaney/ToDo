@@ -67,6 +67,16 @@ var update = function(id, updates) {
 var destroy = function(id) {
   destroyed = _todos[id];
   delete _todos[id];
+  $.ajax({
+    url:'/' + id,
+    type: 'DELETE',
+    success: function() {
+      console.log('Deleted successfully');
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error('/', status, err.toString());
+    }.bind(this)
+  });
 };
 
 var store = exports.store = assign({}, EventEmitter.prototype, {
@@ -115,8 +125,9 @@ dispatcher.register(function(action) {
 
     case constants.TODO_UNDO_DESTROY:
       if(destroyed){
-        update(destroyed.id, destroyed);
+        create(destroyed.text);
         store.emitChange();
+        destroyed = null;
       }
       break;
 
