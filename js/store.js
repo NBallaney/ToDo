@@ -8,37 +8,47 @@ var CHANGE_EVENT = 'change';
 var _todos = {};
 var destroyed;
 
-var create = function(text) {
-  var id = Date.now();
-  _todos[id] = {
-    id: id,
-    complete: false,
-    text: text
-  };
-};
-
-$.ajax({
-  url:'/',
-  type: 'POST',
-  data: 'IT WORKS',
-  success: function() {
-    console.log('Posted successfully');
-  }.bind(this),
-  error: function(xhr, status, err) {
-    console.error('/', status, err.toString());
-  }.bind(this)
-});
-
 $.ajax({
   url: '/getTodos',
   dataType: 'json',
   success: function(data) {
-    console.log(data);
+    data.forEach(function(todo) {
+      _todos[todo.id] = {
+        id: todo.id,
+        complete: false,
+        text: todo.text
+      };
+    });
   }.bind(this),
   error: function(xhr, state, err) {
     console.error('/', status, err.toString());
   }.bind(this)
 });
+
+
+var create = function(text) {
+  var id = Date.now();
+  
+  _todos[id] = {
+    id: id,
+    complete: false,
+    text: text
+  };
+
+  $.ajax({
+    url:'/',
+    type: 'POST',
+    dataType: 'json',
+    data: {text: text, id: id},
+    success: function() {
+      console.log('Posted successfully');
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error('/', status, err.toString());
+    }.bind(this)
+  });
+};
+
 
 var update = function(id, updates) {
   _todos[id] = assign({}, _todos[id], updates);

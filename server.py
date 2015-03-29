@@ -1,22 +1,7 @@
 import sqlite3
 from flask import Flask, g, request, render_template, redirect, json, Response
 
-# app = Flask(__name__)
 app = Flask(__name__, static_url_path='', static_folder='')
-# app.add_url_rule('/', 'root', lambda: app.send_static_file('index.html'))
-
-# @app.route('/tasks.json', methods=['GET', 'POST'])
-# def tasks_handler():
-
-#     with open('tasks.json', 'r') as file:
-#         tasks = json.loads(file.read())
-
-#     if request.method == 'POST':
-#         tasks.append(request.form.to_dict())
-
-#         with open('tasks.json', 'w') as file:
-#             file.write(json.dumps(tasks, indent=4, separators=(',', ': ')))
-
 
 @app.before_request
 def before_request():
@@ -34,18 +19,19 @@ def returnIndexPage():
 
 @app.route('/getTodos')
 def get_todos():
-  data = g.db.execute("SELECT todo FROM todos").fetchall()
+  data = g.db.execute("SELECT text,id FROM todos").fetchall()
+  print data
   todos = []
   for i in data:
-    todos.append(i[0])
+    todos.append({'text': i[0], 'id': i[1]})
   return json.dumps(todos)
 
 @app.route('/', methods = ['POST'])
 def post_todo():
     incomingDict = request.form.to_dict()
-    todo = incomingDict.keys()[0]
-
-    g.db.execute("INSERT INTO todos VALUES (?)", [todo])
+    text = incomingDict['text']
+    id = int(incomingDict['id'])
+    g.db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
     g.db.commit()
     return redirect('/getTodos')
 
