@@ -19,7 +19,6 @@ var API = exports.API = {
         data.forEach(function(todo) {
           todos[todo.id] = {
             id: todo.id,
-            complete: false,
             text: todo.text
           };
         });
@@ -40,7 +39,6 @@ var create = function(text) {
   var id = Date.now();
   _todos[id] = {
     id: id,
-    complete: false,
     text: text
   };
 
@@ -79,15 +77,6 @@ var destroy = function(id) {
 };
 
 var store = exports.store = assign({}, EventEmitter.prototype, {
-  areAllComplete: function() {
-    for(var id in _todos) {
-      if(!_todos[id].complete) {
-        return false;
-      }
-    }
-    return true;
-  },
-
   getAll: function() {
     return _todos;
   },

@@ -35,7 +35,6 @@ var Todo = React.createClass({
           <input
             className="toggle"
             type="checkbox"
-            checked={todo.complete}
             onChange={this._destroy}
           />
           <label onClick={this._editingClick}>
