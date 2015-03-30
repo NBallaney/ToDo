@@ -1,6 +1,4 @@
 button {
-  margin: 0;
-  padding: 0;
   border: 0;
   background: none;
   font-size: 100%;
@@ -26,6 +24,12 @@ input[type="checkbox"] {
   outline: none;
 }
 
+.undo {
+  padding: 16px 16px 16px 20px;
+  line-height: 1;
+  color: rgba(255, 165, 0, 0.69);
+}
+
 .hidden {
   display: none;
 }
@@ -44,7 +48,7 @@ input[type="checkbox"] {
   width: 100%;
   font-size: 50px;
   text-align: center;
-  color: rgb(152, 199, 0)
+  color: rgba(152, 199, 0, 0.9);
 }
 
 .new-todo,
@@ -78,6 +82,7 @@ input[type="checkbox"] {
   border-top: 1px solid #e6e6e6;
 }
 
+
 .todo-list {
   margin: 0;
   padding: 0;
@@ -88,10 +93,6 @@ input[type="checkbox"] {
   position: relative;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
-}
-
-.todo-list li:last-child {
-  border-bottom: none;
 }
 
 .todo-list li.editing {
@@ -113,13 +114,12 @@ input[type="checkbox"] {
 .todo-list li .toggle {
   text-align: center;
   width: 40px;
-  /* auto, since non-WebKit browsers doesn't support input styling */
   height: auto;
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto 0;
-  border: none; /* Mobile Safari */
+  border: none;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -140,46 +140,6 @@ input[type="checkbox"] {
   display: block;
   line-height: 1;
   transition: color 0.4s;
-}
-
-.todo-list li.completed label {
-  color: #d9d9d9;
-  text-decoration: line-through;
-}
-
-.todo-list li .destroy {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  bottom: 0;
-  width: 40px;
-  height: 40px;
-  margin: auto 0;
-  font-size: 30px;
-  color: #cc9a9a;
-  margin-bottom: 11px;
-  transition: color 0.2s ease-out;
-}
-
-.todo-list li .destroy:hover {
-  color: #af5b5e;
-}
-
-.todo-list li .destroy:after {
-  content: '×';
-}
-
-.todo-list li:hover .destroy {
-  display: block;
-}
-
-.todo-list li .edit {
-  display: none;
-}
-
-.todo-list li.editing:last-child {
-  margin-bottom: -1px;
 }
 
 .info {

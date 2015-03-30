@@ -4,7 +4,7 @@ var constants = require('./constants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
-
+var DESTROY_EVENT = 'destroy';
 var _todos = {};
 var destroyed;
 
@@ -96,12 +96,16 @@ var store = exports.store = assign({}, EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   },
 
+  emitDestroy: function() {
+    this.emit(DESTROY_EVENT);
+  },
+
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
+  addDestroyListener: function(callback) {
+    this.on(DESTROY_EVENT, callback);
   }
 });
 
@@ -119,7 +123,7 @@ dispatcher.register(function(action) {
 
     case constants.TODO_DESTROY:
       destroy(action.id);
-      store.emitChange();
+      store.emitDestroy();
       break;
 
     case constants.TODO_UNDO_DESTROY:
