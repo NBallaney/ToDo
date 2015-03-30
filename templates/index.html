@@ -14,7 +14,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/bundle.js"></script>
     <script>
-        // alert('ProTip: Click on a todo to edit it.');
+      if(!localStorage.getItem("tipAlert")) {
+        alert('ProTip: Click on a todo to edit it.');
+        localStorage.setItem("tipAlert", "true");
+      }
     </script>
   </body>
 </html>
