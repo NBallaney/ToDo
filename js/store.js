@@ -48,7 +48,7 @@ var create = function(text) {
     contentType: 'application/json',
     data: JSON.stringify({text: text, id: id}),
     success: function(data) {
-      console.log('Todo Created');
+      console.log(data);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
@@ -59,6 +59,18 @@ var create = function(text) {
 
 var update = function(id, updates) {
   _todos[id] = assign({}, _todos[id], updates);
+  $.ajax({
+    url:'/' + id,
+    type: 'PUT',
+    contentType: 'application/json',
+    data: JSON.stringify(updates),
+    success: function(data) {
+      console.log(data);
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error('/', status, err.toString());
+    }.bind(this)
+  });
 };
 
 var destroy = function(id) {
@@ -67,8 +79,8 @@ var destroy = function(id) {
   $.ajax({
     url:'/' + id,
     type: 'DELETE',
-    success: function() {
-      console.log('Todo Completed');
+    success: function(data) {
+      console.log(data);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());

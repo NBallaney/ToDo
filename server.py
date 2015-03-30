@@ -32,13 +32,20 @@ def post_todo():
   id = jsonData['id']
   g.db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
   g.db.commit()
-  return 'Successful POST'
+  return 'ToDo Created'
 
 @app.route('/<id>', methods = ['DELETE'])
 def delete_todo(id):
   g.db.execute("DELETE FROM todos WHERE id=(?)", [id])
   g.db.commit()
-  return 'Successful DELETE'
+  return 'ToDo Completed'
+
+@app.route('/<id>', methods = ['PUT'])
+def update_todo(id):
+  text = request.get_json()['text']
+  g.db.execute("UPDATE todos SET text=(?) WHERE id=(?)", [text, id])
+  g.db.commit()
+  return 'ToDo Updated'
 
 if __name__ == '__main__':
     # app.debug = True
