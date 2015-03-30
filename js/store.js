@@ -36,7 +36,6 @@ API.getAllTodos(function(todos) {
   _todos = todos;
 });
 
-
 var create = function(text) {
   var id = Date.now();
   _todos[id] = {
