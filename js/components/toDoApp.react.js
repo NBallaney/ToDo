@@ -27,7 +27,6 @@ var TodoApp = React.createClass({
     storeAPI.getAllTodos(function(data) {
       self.setState({
         allTodos: data,
-        isDestroyed: false
       });
     });
     store.addChangeListener(this._onChange);

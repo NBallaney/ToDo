@@ -123,6 +123,7 @@ dispatcher.register(function(action) {
 
     case constants.TODO_DESTROY:
       destroy(action.id);
+      store.emitChange();
       store.emitDestroy();
       break;
 
