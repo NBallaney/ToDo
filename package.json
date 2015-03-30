@@ -17,7 +17,7 @@
     "watchify": "^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d .",
+    "start": "watchify -o js/bundle.js -v -d js/app.js",
     "test": "jest"
   },
   "author": "Nikhil Ballaney",

@@ -29,7 +29,7 @@ var API = exports.API = {
       }.bind(this)
     });
   }
-}
+};
 
 API.getAllTodos(function(todos) {
   _todos = todos;
