@@ -3,7 +3,7 @@
 
 <code>npm start</code>
 
-Kill the process after it writes to bundle.js
+Kill the process after it writes to js/bundle.js
 
 <code>pip install -r requirements.txt</code>
 
