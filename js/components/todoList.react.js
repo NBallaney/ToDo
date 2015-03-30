@@ -21,8 +21,8 @@ var TodoList = React.createClass({
      }
 
      return (
-       <section id="main">
-         <ul id="todo-list">{todos}</ul>
+       <section className="main">
+         <ul className="todo-list">{todos}</ul>
        </section>
      );
    }

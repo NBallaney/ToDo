@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, g, request, render_template, redirect, json, Response
+from flask import Flask, g, request, render_template, json
 
 app = Flask(__name__, static_url_path='', static_folder='')
 
@@ -41,5 +41,5 @@ def delete_todo(id):
   return 'Successful DELETE'
 
 if __name__ == '__main__':
-    app.debug = True
+    # app.debug = True
     app.run(port=3000)

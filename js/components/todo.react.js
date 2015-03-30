@@ -31,7 +31,7 @@ var Todo = React.createClass({
 
     return (
       <li className={className} key={todo.id}>
-        <div>
+        <div className="view">
           <input
             className="toggle"
             type="checkbox"

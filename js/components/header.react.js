@@ -6,9 +6,9 @@ var Header = React.createClass({
   render: function() {
     return (
       <header id="header">
-        <h1>Tasks</h1>
+        <h1>ToDo</h1>
         <TextInput 
-          id="new-todo"
+          className="new-todo"
           placeholder="I need to .."
           onSave={this._onSave}
         />

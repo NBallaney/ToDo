@@ -36,7 +36,7 @@ var TodoApp = React.createClass({
       <div>
         <Header />
         <button onClick={this._onClick}>
-          Undo
+          Undo Complete
         </button>
         <TodoList
           allTodos={this.state.allTodos}

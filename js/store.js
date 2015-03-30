@@ -49,8 +49,8 @@ var create = function(text) {
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({text: text, id: id}),
-    success: function() {
-      console.log('Posted successfully');
+    success: function(data) {
+      console.log('Todo Created');
     }.bind(this),
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
@@ -70,7 +70,7 @@ var destroy = function(id) {
     url:'/' + id,
     type: 'DELETE',
     success: function() {
-      console.log('Deleted successfully');
+      console.log('Todo Completed');
     }.bind(this),
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
