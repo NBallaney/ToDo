@@ -102,6 +102,7 @@ input[type="checkbox"] {
 
 .todo-list li.editing .edit {
   display: block;
+  border-color: rgba(161, 203, 24, 0.6);
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
