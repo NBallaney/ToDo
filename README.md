@@ -7,6 +7,6 @@ Kill the process after it writes to js/bundle.js
 
 <code>pip install -r requirements.txt</code>
 
-<code>server.py</code>
+<code>python server.py</code>
 
 Open localhost:3000 in the browser
