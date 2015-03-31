@@ -1,4 +1,7 @@
 # ToDo
+
+A ToDo web app created using React, Flask and SQLite.
+
 <code>npm install</code>
 
 <code>npm start</code>
