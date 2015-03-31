@@ -1,6 +1,6 @@
 # ToDo
 
-A ToDo web app created using React (flux architecture), Flask and SQLite.
+A full-stack ToDo web app created using React (flux architecture), Flask and SQLite. 
 
 After cloning the repository, from the project's root directory, please run the following commands in the command line:
 
