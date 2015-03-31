@@ -17,3 +17,5 @@ You can kill the process after it writes to js/bundle.js
 Open 'localhost:3000' in the browser. 
 
 Hope you enjoy using it!
+
+Work is on-going to implement new features like wallpapers, color picker, task deadlines etc. and/or tests.
