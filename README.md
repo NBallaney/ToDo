@@ -14,6 +14,6 @@ You can kill the process after it writes to js/bundle.js
 
 <code>python server.py</code>
 
-Open localhost:3000 in the browser. 
+Open 'localhost:3000' in the browser. 
 
 Hope you enjoy using it!
