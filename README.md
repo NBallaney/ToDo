@@ -6,7 +6,7 @@ A ToDo web app created using React, Flask and SQLite.
 
 <code>npm start</code>
 
-Kill the process after it writes to js/bundle.js
+You can kill the process after it writes to js/bundle.js
 
 <code>pip install -r requirements.txt</code>
 
