@@ -1,6 +1,6 @@
 var React = require('react');
 var actions = require('../actions');
-var Todo = require('./todo.react');
+var TodoItem = require('./todoItem.react');
 
 var TodoList = React.createClass({
 
@@ -17,7 +17,7 @@ var TodoList = React.createClass({
      }
 
      for (var key in allTodos) {
-       todos.push(<Todo key={key} todo={allTodos[key]} />);
+       todos.push(<TodoItem key={key} todo={allTodos[key]} />);
      }
 
      return (

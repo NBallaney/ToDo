@@ -13,7 +13,6 @@ var API = exports.API = {
     $.ajax({
       url: '/getTodos',
       dataType: 'json',
-      contentType: 'application/json',
       success: function(data) {
         var todos = {};
         data.forEach(function(todo) {
@@ -23,10 +22,10 @@ var API = exports.API = {
           };
         });
         return callback(todos);
-      }.bind(this),
+      },
       error: function(xhr, state, err) {
         console.error('/', status, err.toString());
-      }.bind(this)
+      }
     });
   }
 };
@@ -49,10 +48,10 @@ var create = function(text) {
     data: JSON.stringify({text: text, id: id}),
     success: function(data) {
       console.log(data);
-    }.bind(this),
+    },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
-    }.bind(this)
+    }
   });
 };
 
@@ -66,10 +65,10 @@ var update = function(id, updates) {
     data: JSON.stringify(updates),
     success: function(data) {
       console.log(data);
-    }.bind(this),
+    },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
-    }.bind(this)
+    }
   });
 };
 
@@ -81,10 +80,10 @@ var destroy = function(id) {
     type: 'DELETE',
     success: function(data) {
       console.log(data);
-    }.bind(this),
+    },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
-    }.bind(this)
+    }
   });
 };
 
