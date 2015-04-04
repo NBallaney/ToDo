@@ -35,7 +35,7 @@ API.getAllTodos(function(todos) {
 });
 
 var create = function(text) {
-  id = Math.floor(Math.random() * 999999);
+  id = Math.floor(Math.random() * 1000000);
   _todos[id] = {
     id: id,
     text: text
