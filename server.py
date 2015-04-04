@@ -21,7 +21,7 @@ def returnIndexPage():
   return render_template('index.html')
 
 
-@app.route('/getTodos')
+@app.route('/api')
 def get_todos():
   # Returns a list of tuples.
   data = g.db.execute("SELECT text,id FROM todos").fetchall()
@@ -31,7 +31,7 @@ def get_todos():
   return json.dumps(todos)
 
 
-@app.route('/', methods = ['POST'])
+@app.route('/api', methods = ['POST'])
 def post_todo():
   jsonData = request.get_json()
   text = jsonData['text']
@@ -41,14 +41,14 @@ def post_todo():
   return 'ToDo Created'
 
 
-@app.route('/<id>', methods = ['DELETE'])
+@app.route('/api/<id>', methods = ['DELETE'])
 def delete_todo(id):
   g.db.execute("DELETE FROM todos WHERE id=(?)", [id])
   g.db.commit()
   return 'ToDo Completed'
 
 
-@app.route('/<id>', methods = ['PUT'])
+@app.route('/api/<id>', methods = ['PUT'])
 def update_todo(id):
   text = request.get_json()['text']
   g.db.execute("UPDATE todos SET text=(?) WHERE id=(?)", [text, id])

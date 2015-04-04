@@ -11,7 +11,7 @@ var destroyed;
 var API = exports.API = {
   getAllTodos: function(callback) {
     $.ajax({
-      url: '/getTodos',
+      url: '/api',
       dataType: 'json',
       success: function(data) {
         var todos = {};
@@ -35,14 +35,14 @@ API.getAllTodos(function(todos) {
 });
 
 var create = function(text) {
-  var id = Date.now();
+  id = Math.floor(Math.random() * 999999);
   _todos[id] = {
     id: id,
     text: text
   };
 
   $.ajax({
-    url:'/',
+    url:'/api',
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({text: text, id: id}),
@@ -59,7 +59,7 @@ var create = function(text) {
 var update = function(id, updates) {
   _todos[id] = assign({}, _todos[id], updates);
   $.ajax({
-    url:'/' + id,
+    url:'/api/' + id,
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(updates),
@@ -76,7 +76,7 @@ var destroy = function(id) {
   destroyed = _todos[id];
   delete _todos[id];
   $.ajax({
-    url:'/' + id,
+    url:'/api/' + id,
     type: 'DELETE',
     success: function(data) {
       console.log(data);
