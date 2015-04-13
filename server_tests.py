@@ -3,7 +3,6 @@ import server
 import unittest
 import tempfile
 import json
-from flask import jsonify
 
 class serverTestCase(unittest.TestCase):
   # Called before each test.
@@ -13,17 +12,21 @@ class serverTestCase(unittest.TestCase):
     # Disables error catching during request handling to get better error reports when making test requests.
     server.app.config['TESTING'] = True
     self.app = server.app.test_client()
-    # server.init_db()
+    with server.app.app_context():
+      server.init_db()
+
 
   # Called after each test.
   def tearDown(self):
     os.close(self.db_fd)
     os.unlink(server.app.config['DATABASE'])
 
+
   # Function name should start with 'test' so that unittest runs it automatically.
   def test_empty_db(self):
     response = self.app.get('/api')
     assert '[]' in response.data
+
 
   def test_create(self):
     todo = {"text": "Testing 1",
