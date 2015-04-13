@@ -1,4 +1,5 @@
 import sqlite3
+import os
 from flask import Flask, g, request, render_template, json
 
 app = Flask(__name__, static_url_path='', static_folder='')

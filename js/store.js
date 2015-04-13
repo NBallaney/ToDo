@@ -45,7 +45,7 @@ var create = function(text) {
     url:'/api',
     type: 'POST',
     contentType: 'application/json',
-    data: JSON.stringify({text: text, id: id}),
+    data: JSON.stringify({id: id, text: text}),
     success: function(data) {
       console.log(data);
     },

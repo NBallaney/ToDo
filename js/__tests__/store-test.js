@@ -1,3 +1,5 @@
+// Something that is untested is broken.
+
 jest.dontMock('../constants');
 jest.dontMock('../store');
 jest.dontMock('object-assign');
