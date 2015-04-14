@@ -4,6 +4,7 @@ import server
 import unittest
 import tempfile
 
+
 class serverTestCase(unittest.TestCase):
   # Called before each test.
   def setUp(self):
@@ -22,7 +23,7 @@ class serverTestCase(unittest.TestCase):
     os.unlink(server.app.config['DATABASE'])
 
 
-  # Function name should start with 'test' so that unittest runs it automatically.
+  # Function name should start with 'test' so that unittest runs it as a test.
   def test_config_settings(self):
     config = server.app.config
     assert os.path.exists('todos.db')
@@ -64,8 +65,8 @@ class serverTestCase(unittest.TestCase):
     for todo in response:
       if todo['id'] == id:
         isDeleted = False
-
     assert isDeleted
+
 
 
 if __name__ == '__main__':

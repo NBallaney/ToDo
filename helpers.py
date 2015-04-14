@@ -30,6 +30,8 @@ def update_todo(self, id, text):
                            content_type='application/json')
   return check_status_code(response, 204, 405)
 
+
 def delete_todo(self, id):
   response = self.app.delete('/api/%d' % (id))
   return check_status_code(response, 204, 405)
+  

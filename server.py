@@ -9,11 +9,11 @@ app.config['DATABASE'] = os.path.join(app.root_path, 'todos.db')
 
 
 def connect_db():
-  rv = sqlite3.connect(app.config['DATABASE'])
-  rv.row_factory = sqlite3.Row
-  return rv
+  db = sqlite3.connect(app.config['DATABASE'])
+  return db
 
 
+# Initalize SQLite3 database
 def init_db():
   db = get_db()
   # with closing(connect_db()) as db:
@@ -22,7 +22,9 @@ def init_db():
   db.commit()
 
 
+# Returns database with active connection
 def get_db():
+  # To prevent multiple connections
   if not hasattr(g, 'sqlite_db'):
       g.sqlite_db = connect_db()
   return g.sqlite_db
@@ -36,14 +38,14 @@ def teardown_request(exception):
 
 
 @app.route('/')
-def returnIndexPage():
+def render_index():
   return render_template('index.html')
 
 
 @app.route('/api')
 def get_todos():
-  # Returns a list of tuples.
   db = get_db()
+  # Returns a list of tuples.
   data = db.execute('SELECT text,id FROM todos').fetchall()
   todos = []
   for i in data:
@@ -77,6 +79,7 @@ def update_todo(id):
   db.execute('UPDATE todos SET text=(?) WHERE id=(?)', [text, id])
   db.commit()
   return Response('', 204)
+
 
 
 if __name__ == '__main__':
