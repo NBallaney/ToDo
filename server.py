@@ -1,7 +1,7 @@
 import sqlite3
 import os
-from flask import Flask, g, request, render_template, json
-from contextlib import closing
+from flask import Flask, g, request, Response, render_template, json
+# from contextlib import closing
 
 
 app = Flask(__name__, static_url_path='', static_folder='')
@@ -16,10 +16,10 @@ def connect_db():
 
 def init_db():
   db = get_db()
-  with closing(connect_db()) as db:
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
+  # with closing(connect_db()) as db:
+  with app.open_resource('schema.sql', mode='r') as f:
+      db.cursor().executescript(f.read())
+  db.commit()
 
 
 def get_db():
@@ -44,11 +44,11 @@ def returnIndexPage():
 def get_todos():
   # Returns a list of tuples.
   db = get_db()
-  data = db.execute("SELECT text,id FROM todos").fetchall()
+  data = db.execute('SELECT text,id FROM todos').fetchall()
   todos = []
   for i in data:
     todos.append({'text': i[0], 'id': i[1]})
-  return json.dumps(todos)
+  return Response(json.dumps(todos), 200)
 
 
 @app.route('/api', methods = ['POST'])
@@ -57,26 +57,26 @@ def post_todo():
   text = jsonData['text']
   id = jsonData['id']
   db = get_db()
-  db.execute("INSERT INTO todos (id, text) VALUES (?, ?)", [id, text])
+  db.execute('INSERT INTO todos (id, text) VALUES (?, ?)', [id, text])
   db.commit()
-  return 'ToDo Created'
+  return Response('', 201)
 
 
 @app.route('/api/<id>', methods = ['DELETE'])
 def delete_todo(id):
   db = get_db()
-  db.execute("DELETE FROM todos WHERE id=(?)", [id])
+  db.execute('DELETE FROM todos WHERE id=(?)', [id])
   db.commit()
-  return 'ToDo Completed'
+  return Response('', 204)
 
 
 @app.route('/api/<id>', methods = ['PUT'])
 def update_todo(id):
   text = request.get_json()['text']
   db = get_db()
-  db.execute("UPDATE todos SET text=(?) WHERE id=(?)", [text, id])
+  db.execute('UPDATE todos SET text=(?) WHERE id=(?)', [text, id])
   db.commit()
-  return 'ToDo Updated'
+  return Response('', 204)
 
 
 if __name__ == '__main__':

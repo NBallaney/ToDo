@@ -47,7 +47,7 @@ var create = function(text) {
     contentType: 'application/json',
     data: JSON.stringify({id: id, text: text}),
     success: function(data) {
-      console.log(data);
+      console.log('ToDo Created');
     },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
@@ -64,7 +64,7 @@ var update = function(id, updates) {
     contentType: 'application/json',
     data: JSON.stringify(updates),
     success: function(data) {
-      console.log(data);
+      console.log('ToDo Updated');
     },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());
@@ -79,7 +79,7 @@ var destroy = function(id) {
     url:'/api/' + id,
     type: 'DELETE',
     success: function(data) {
-      console.log(data);
+      console.log('ToDo Completed');
     },
     error: function(xhr, status, err) {
       console.error('/', status, err.toString());

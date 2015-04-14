@@ -4,3 +4,4 @@ js/bundle.min.js
 js/.bundle.js
 .DS_Store
 server.pyc
+helpers.pyc
