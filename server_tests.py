@@ -50,8 +50,22 @@ class serverTestCase(unittest.TestCase):
     helpers.create_todo(self, id, 'Test 1')
     helpers.update_todo(self, id, 'Updated text')
     response = helpers.retrieve_todos(self)
-    assert response[0]['id'] == 1
+    assert response[0]['id'] == id
     assert response[0]['text'] == 'Updated text'
+
+
+  def test_todo_delete(self):
+    id = 1 
+    helpers.create_todo(self, id, 'Test 1')
+    helpers.create_todo(self, id + 1, 'Test 2')
+    helpers.delete_todo(self, id)
+    response = helpers.retrieve_todos(self)
+    isDeleted = True
+    for todo in response:
+      if todo['id'] == id:
+        isDeleted = False
+
+    assert isDeleted
 
 
 if __name__ == '__main__':
